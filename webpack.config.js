@@ -47,6 +47,6 @@ module.exports = (env={ type: 'dev'}) => {
 
         plugins: plugins,
 
-        watch: env.type == 'dev'
+        watch: true
     };
 };

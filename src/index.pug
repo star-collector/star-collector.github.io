@@ -1,10 +1,17 @@
-!doctype html
+- var username = "star-collector";
+
+doctype html
 html
     head
-        title star-collector.github.io
+        title #{username}.github.io
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1")
     body
         div(id="particles-js")
-        //- div(class="card-info")
+        div(class="card-info")
+            div(class="card-image")
+                a(href="https://github.com/" + username, target="_blank")
+                    img(src="https://avatars.githubusercontent.com/" + username)
+            h2 Pavel Bakharev
+            h3 Full-stack developer
         script(src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js")
