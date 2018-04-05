@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    font:normal 75% Arial, Helvetica, sans-serif;
 }
 
 canvas {
@@ -19,15 +18,19 @@ canvas {
 }
 
 .card-info {
+    animation: appear 3s;
     color: #fff;
     left: 50%;
     padding: 20px;
     position: fixed;
+    text-align: center;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
     
     .card-image {
         text-align: center;
+        user-select: none;
         
         img {
             border-radius: 80px;
@@ -39,5 +42,39 @@ canvas {
                 box-shadow: 0 0 30px 0 #fff;
             }
         }
+    }
+}
+
+.github-label {
+    animation: appear 3s;
+    background: #840000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 #fff;
+    color: white;
+    left: 20px;
+    position: fixed;
+    bottom: 20px;
+    padding: 10px;
+    
+    span {
+        margin-right: 5px;
+    }
+    
+    &:hover {
+        box-shadow: 0 0 30px 0 #fff;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    
+    20% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
     }
 }

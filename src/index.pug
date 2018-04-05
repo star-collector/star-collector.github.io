@@ -6,12 +6,17 @@ html
         title #{username}.github.io
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
     body
         div(id="particles-js")
+        a(href="https://github.com/" + username, target="_blank")
+            div(class="github-label")
+                span(class="fa fa-lg fa-github")
+                | Github
         div(class="card-info")
             div(class="card-image")
                 a(href="https://github.com/" + username, target="_blank")
                     img(src="https://avatars.githubusercontent.com/" + username)
             h2 Pavel Bakharev
-            h3 Full-stack developer
+            h3 Full Stack developer
         script(src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js")
