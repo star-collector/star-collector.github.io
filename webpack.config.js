@@ -23,20 +23,40 @@ module.exports = (env={ type: 'dev'}) => {
         },
 
         module: {
-            rules: [
-                {
-                    test: /\.ts$/,
-                    loader: 'ts-loader'
-                },
-                {
-                    test: /\.less$/,
-                    loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?minimize=true!less-loader' })
-                },
-                {
-                    test: /\.(jade|pug)$/,
-                    loader: 'pug-loader'
-                }
-            ]
+            rules: [{
+                test: /\.ts$/,
+                loader: 'ts-loader'
+            }, {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?minimize=true!less-loader' })
+            }, {
+                test: /\.(jade|pug)$/,
+                loader: 'pug-loader'
+            }, {
+                test: /\.(jpe?g|gif|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                use: ['base64-image-loader', {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                        },
+                        optipng: {
+                            enabled: false,
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        webp: {
+                            quality: 75
+                        }
+                    }
+                }]
+            }]
         },
 
         output: {
