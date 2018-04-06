@@ -1,4 +1,5 @@
 - var username = "star-collector";
+- var email = "baharev_pavel@mail.ru";
 
 doctype html
 html
@@ -14,6 +15,10 @@ html
             div(class="github-label")
                 span(class="fa fa-lg fa-github")
                 | Github
+        a(href="mailto:" + email, title=email)
+            div(class="email-label")
+                span(class="fa fa-lg fa-envelope")
+                | #{email}
         div(class="card-info")
             div(class="card-image")
                 a(href="https://github.com/" + username, target="_blank")

@@ -45,15 +45,15 @@ canvas {
     }
 }
 
-.github-label {
+.github-label, .email-label {
     animation: appear 3s;
     background: #840000;
     border-radius: 5px;
+    bottom: 20px;
     box-shadow: 0 0 10px 0 #fff;
     color: white;
-    left: 20px;
+    font-size: 14px;
     position: fixed;
-    bottom: 20px;
     padding: 10px;
     
     span {
@@ -63,6 +63,14 @@ canvas {
     &:hover {
         box-shadow: 0 0 30px 0 #fff;
     }
+}
+
+.github-label {
+    left: 20px;
+}
+
+.email-label {
+    right: 20px;
 }
 
 @keyframes appear {
