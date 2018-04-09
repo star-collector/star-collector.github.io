@@ -1,4 +1,5 @@
 body {
+    font-family: sans-serif;
     margin: 0;
 }
 
@@ -17,7 +18,7 @@ canvas {
     background-position: 50% 50%;
 }
 
-.card-info {
+.info {
     animation: appear 3s;
     color: #fff;
     left: 50%;
@@ -28,7 +29,7 @@ canvas {
     transform: translate(-50%, -50%);
     width: 100%;
     
-    .card-image {
+    .info-image {
         text-align: center;
         user-select: none;
         
@@ -45,16 +46,14 @@ canvas {
     }
 }
 
-.github-label, .email-label {
+.floating-label {
     animation: appear 3s;
-    background: #840000;
     border-radius: 5px;
-    bottom: 20px;
     box-shadow: 0 0 10px 0 #fff;
     color: white;
     font-size: 14px;
-    position: fixed;
     padding: 10px;
+    transition: 0.5s;
     
     span {
         margin-right: 5px;
@@ -65,12 +64,40 @@ canvas {
     }
 }
 
-.github-label {
+.donate-label {
     left: 20px;
+    right: 20px;
+    position: fixed;
+    text-align: center;
+    top: 20px;
+    vertical-align: middle;
 }
 
 .email-label {
+    bottom: 20px;
     right: 20px;
+    position: fixed;
+}
+
+.github-label {
+    bottom: 20px;
+    left: 20px;
+    position: fixed;
+}
+
+.yandex {
+    left: 0px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
+}
+
+@media (max-height: 320px) {
+    .info {
+        h2, h3 {
+            margin: 2px 0;
+        }
+    }
 }
 
 @keyframes appear {

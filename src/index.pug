@@ -1,5 +1,6 @@
 - var username = "star-collector";
 - var email = "baharev_pavel@mail.ru";
+- var yandex = "https://money.yandex.ru/to/410015178597784";
 
 doctype html
 html
@@ -7,20 +8,26 @@ html
         title #{username}.github.io
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1")
-        link(rel="icon" href=require('./icon.png'))
+        link(rel="icon" href="/src/img/icon.png")
         link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
     body
         div(id="particles-js")
+        div(class="floating-label donate-label")
+            | Do you like my projects or just want to support a starving developer? :)
+            a(href=yandex, target="_blank")
+                div(class="floating-label yandex")
+                    img(src="/src/img/yandexmoney.png", width="32", height="32")
+                    div Yandex Money
         a(href="https://github.com/" + username, target="_blank")
-            div(class="github-label")
+            div(class="floating-label github-label")
                 span(class="fa fa-lg fa-github")
-                | Github
+                | GitHub
         a(href="mailto:" + email, title=email)
-            div(class="email-label")
+            div(class="floating-label email-label")
                 span(class="fa fa-lg fa-envelope")
                 | #{email}
-        div(class="card-info")
-            div(class="card-image")
+        div(class="info")
+            div(class="info-image")
                 a(href="https://github.com/" + username, target="_blank")
                     img(src="https://avatars.githubusercontent.com/" + username)
             h2 Pavel Bakharev
