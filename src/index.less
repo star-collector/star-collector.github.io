@@ -51,7 +51,8 @@ canvas {
     border-radius: 5px;
     box-shadow: 0 0 10px 0 #fff;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
     padding: 10px;
     transition: 0.5s;
     
@@ -65,12 +66,33 @@ canvas {
 }
 
 .donate-label {
+    cursor: pointer;
     left: 20px;
     right: 20px;
+    padding: 10px 5px;
     position: fixed;
     text-align: center;
     top: 20px;
     vertical-align: middle;
+}
+
+.donation-links {
+    display: none;
+    text-align: center;
+    
+    .paypal, .yandex {
+        animation: appear 0.5s;
+        position: absolute;
+        top: 80px;
+    }
+    
+    .paypal {
+        left: 155px;
+    }
+    
+    .yandex {
+        left: 20px;
+    }
 }
 
 .email-label {
@@ -83,13 +105,6 @@ canvas {
     bottom: 20px;
     left: 20px;
     position: fixed;
-}
-
-.yandex {
-    left: 0px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, 50%);
 }
 
 @media (max-height: 320px) {
