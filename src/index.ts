@@ -114,11 +114,15 @@ class Site {
         particlesJS("particles-js", this.particleJSConfig);
     };
     
-    public showLabels() {
+    public showLabels(): boolean {
         let element: HTMLElement = document.querySelector('.donation-links');
-        let style: CSSStyleDeclaration = window.getComputedStyle(element);
         
-        element.style.display = (style.display == 'none' ? 'block' : 'none');
+        if(element.classList.contains('hidden')) {
+            element.classList.remove('hidden');
+            return false;
+        };
+        
+        element.classList.add('hidden');
     };
 };
 

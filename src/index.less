@@ -18,6 +18,14 @@ canvas {
     background-position: 50% 50%;
 }
 
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .info {
     animation: appear 3s;
     color: #fff;
@@ -51,6 +59,7 @@ canvas {
     border-radius: 5px;
     box-shadow: 0 0 10px 0 #fff;
     color: white;
+    display: inline-block;
     font-size: 13px;
     font-weight: bold;
     padding: 10px;
@@ -77,21 +86,24 @@ canvas {
 }
 
 .donation-links {
-    display: none;
+    display: flex;
+    opacity: 1;
+    position: fixed;
+    justify-content: center;
     text-align: center;
+    top: 70px;
+    transition: .5s linear;
+    width: 100%;
+    z-index: 1;
+    
+    &.hidden {
+        opacity: 0;
+    }
     
     .paypal, .yandex {
         animation: appear 0.5s;
-        position: absolute;
-        top: 80px;
-    }
-    
-    .paypal {
-        left: 155px;
-    }
-    
-    .yandex {
-        left: 20px;
+        margin: 0 10px;
+        width: 150px;
     }
 }
 
@@ -107,11 +119,31 @@ canvas {
     position: fixed;
 }
 
-@media (max-height: 320px) {
+@media (max-height: 420px) {
     .info {
         h2, h3 {
             margin: 2px 0;
         }
+    }
+    
+    .paypal, .yandex {
+        margin: 0 20px !important;
+    }
+    
+    .donation-links {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .donation-links {
+        top: 90px;
+    }
+    
+    .paypal, .yandex {
+        margin: 0 20px !important;
+        width: 100px !important;
     }
 }
 
