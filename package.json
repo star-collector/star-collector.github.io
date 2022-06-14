@@ -1,29 +1,96 @@
 {
-    "name": "star-collector.github.io",
-    "version": "0.0.1",
-    "scripts": {
-        "build:dev": "webpack --config ./webpack.config.js --progress --colors --profile --bail --env.type=dev --mode=development",
-        "build:prod": "webpack --config ./webpack.config.js --progress --colors --profile --bail --env.type=prod --mode=production"
-    },
-    "description": "Personal github.io site",
-    "devDependencies": {
-        "@types/node": "^9.6.1",
-        "base64-image-loader": "^1.2.1",
-        "css-loader": "^0.28.11",
-        "extract-text-webpack-plugin": "^4.0.0-beta.0",
-        "html-webpack-plugin": "^3.1.0",
-        "image-webpack-loader": "^4.2.0",
-        "less": "^3.0.1",
-        "less-loader": "^4.1.0",
-        "pug": "^2.0.3",
-        "pug-loader": "^2.4.0",
-        "style-loader": "^0.20.3",
-        "ts-loader": "^4.1.0",
-        "typescript": "^2.8.1",
-        "webpack": "^4.4.1",
-        "webpack-cli": "^2.0.13"
-    },
-    "dependencies": {
-        "particles.js": "^2.0.0"
-    }
+  "name": "github.io",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "BUILD_PATH='./docs' react-app-rewired build",
+    "eject": "react-app-rewired eject",
+    "format": "prettier ./**.ts ./**.tsx ./**.js --write ",
+    "format:scss": "prettier-stylelint ./**/*.scss --write ",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:scss": "stylelint **/*.scss --fix",
+    "prepare": "husky install",
+    "test": "CI=true react-app-rewired test"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^14.0.4",
+    "classnames": "^2.3.1",
+    "commitlint": "^16.2.3",
+    "core-js": "^3.21.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "^5.0.0",
+    "react-tsparticles": "^2.0.6",
+    "tsparticles": "^2.0.6"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^16.2.1",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "babel-eslint": "^10.1.0",
+    "customize-cra": "^1.0.0",
+    "env-cmd": "^10.1.0",
+    "es5-ext": "0.10.53",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^17.0.0-0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsdoc": "^38.1.6",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "postcss": "^8.4.12",
+    "postcss-scss": "^4.0.3",
+    "prettier": "^2.6.2",
+    "prettier-eslint": "^13.0.0",
+    "prettier-stylelint": "^0.4.2",
+    "react-app-rewire-alias": "^1.1.5",
+    "react-app-rewired": "^2.2.1",
+    "sass": "^1.49.11",
+    "stylelint": "^14.6.1",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.2.0",
+    "ts-jest": "^27.1.4",
+    "typesafe-actions": "^5.1.0",
+    "typescript": "^4.4.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

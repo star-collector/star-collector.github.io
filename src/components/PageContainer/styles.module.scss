@@ -1,0 +1,23 @@
+@import '/src/styles/mixins.scss';
+
+.pageContainer {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+
+  .content {
+    display: inline-flex;
+    flex-direction: column;
+    max-width: var(--screen-large);
+    padding: 0 96px;
+    width: 100%;
+
+    @include ScreenSize('normal') {
+      padding: 0 68px;
+    }
+
+    @include ScreenSize('small') {
+      padding: 0 16px;
+    }
+  }
+}

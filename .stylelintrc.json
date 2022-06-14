@@ -1,0 +1,19 @@
+{
+  "customSyntax": "postcss-scss",
+  "plugins": ["stylelint-scss", "stylelint-prettier", "stylelint-order"],
+  "extends": [
+    "stylelint-config-idiomatic-order",
+    "./node_modules/prettier-stylelint/config.js"
+  ],
+  "rules": {
+    "indentation": 2,
+    "no-descending-specificity": null,
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-order": [],
+    "order/properties-alphabetical-order": true,
+    "string-quotes": "single"
+  }
+}

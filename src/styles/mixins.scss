@@ -1,0 +1,31 @@
+$screenSizes: (
+  extraLarge: 1920px,
+  large: 1440px,
+  normal: 1024px,
+  small: 598px,
+  extraSmall: 360px,
+);
+
+@mixin ScreenSize($type: 'extraLarge') {
+  @if $type == 'extraLarge' {
+    @media screen and (min-width: map-get($screenSizes, large)) {
+      @content;
+    }
+  } @else if $type == 'large' {
+    @media screen and (max-width: map-get($screenSizes, large)) {
+      @content;
+    }
+  } @else if $type == 'normal' {
+    @media screen and (max-width: map-get($screenSizes, normal)) {
+      @content;
+    }
+  } @else if $type == 'small' {
+    @media screen and (max-width: map-get($screenSizes, small)) {
+      @content;
+    }
+  } @else if $type == 'extraSmall' {
+    @media screen and (max-width: map-get($screenSizes, extraSmall)) {
+      @content;
+    }
+  }
+}

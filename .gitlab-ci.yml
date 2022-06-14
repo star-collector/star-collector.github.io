@@ -1,0 +1,130 @@
+include:
+  - project: 'devops/ci-templates'
+    ref: master
+    file: 'DevOps.gitlab-ci.yml'
+
+variables:
+  HELM_NAMESPACE: open-dialog
+  APK_BUILDREQUIREMENTS: build-base linux-headers tzdata libffi-dev zlib-dev jpeg-dev libxml2-dev libxslt-dev
+  APK_REQUIREMENTS: curl gettext pcre tini freetds-dev unixodbc-dev mariadb-dev
+  PIP_REPOSITORY_URL: http://nexus.kube.vimpelcom.ru/repository/pypi-alpine310/
+  PIP_EXTRA_INDEX_URL: http://nexus.kube.vimpelcom.ru/repository/pypi-remote/simple
+  PIP_INDEX_URL: ${PIP_REPOSITORY_URL}simple
+  PIP_TRUSTED_HOST: nexus.kube.vimpelcom.ru
+  LARGE_DATA_DIRECTORY: /some/dir
+  PROXY: "http://ms-proxy.vimpelcom.ru:8080"
+  NOPROXY: "127.0.0.1,localhost,.vimpelcom.ru,.gitlab-runner.svc.cluster.local"
+  NPMREPO: "http://nexus.kube.vimpelcom.ru/repository/npm-group/"
+  APKREPO: "http://nexus.kube.vimpelcom.ru/repository/alpine/v3.10/main/\nhttp://nexus.kube.vimpelcom.ru/repository/alpine/v3.10/community/"
+  NODE_IMAGE: $NEXUS_REGISTRY_DOCKERHUB/node:12.9.1-alpine
+
+stages:
+   - build
+   - buildimage
+   - deploy
+
+.build_template:
+  tags:
+    - kube
+  stage: build
+  image: $NODE_IMAGE
+  variables:
+    http_proxy: "$PROXY"
+    https_proxy: "$PROXY"
+    no_proxy: "$NOPROXY"
+  before_script:
+    - rm -rf .dockerignore
+    - echo -e "$APKREPO" >  /etc/apk/repositories
+    - apk add --no-cache git
+    - node --print 'process.env'
+    - npm config set registry "$NPMREPO"
+    - npm ci -f
+  artifacts:
+    name: static_build
+    paths:
+      - build
+    expire_in: 1 day
+
+build_dev:
+  extends: .build_template
+  script:
+    - npm run build:dev
+  only:
+    refs:
+      - develop
+
+build_prod:
+  extends: .build_template
+  script:
+    - npm run build:prod
+  only:
+    refs:
+      - main
+
+build_test:
+  extends: .build_template
+  script:
+    - npm run build:test
+  only:
+    refs:
+      - test
+
+build_image:
+  tags:
+    - kube
+  stage: buildimage
+  image: dockerhub.kube.vimpelcom.ru/docker:19.03.8
+  services:
+      - name: dockerhub.kube.vimpelcom.ru/docker:19.03.8-dind
+        command: [ "--insecure-registry=172.21.232.244/24" ]
+  script:
+    - docker login -u $NEXUS_AUTH_LOGIN -p $NEXUS_AUTH_PASSWORD $NEXUS_REGISTRY
+    - docker build
+      --build-arg http_proxy=$PROXY
+      --build-arg https_proxy=$PROXY
+      --network=host
+      -f ci/dockerfiles/Dockerfile
+      -t $IMAGE .
+    - docker push $IMAGE
+    - docker rmi $IMAGE
+  only:
+    refs:
+      - main
+      - develop
+      - test
+
+deploy dev:
+  extends: .deploy_python
+  only:
+    refs:
+      - develop
+  variables:
+    K8S_CLUSTER: $KUBECONFIG_DEV
+  environment:
+    name: develop
+    url: https://react-rewired-template.ru
+
+deploy test:
+  extends: .deploy_python
+  only:
+    refs:
+      - test
+  variables:
+    K8S_CLUSTER: $KUBECONFIG_DEV
+    HELM_NAMESPACE: "open-dialog-test"
+  environment:
+    name: test
+    url: https://react-rewired-template.ru
+
+deploy prod:
+  extends: .deploy_python
+  only:
+    refs:
+      - main
+  tags:
+    - kube
+  variables:
+    K8S_CLUSTER: $KUBECONFIG_PROD
+  environment:
+    name: production
+    url: https://react-rewired-template.ru

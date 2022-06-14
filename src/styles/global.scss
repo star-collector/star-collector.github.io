@@ -1,0 +1,26 @@
+@import './mixins.scss';
+
+:root {
+  --gradient-background: linear-gradient(#000000, #04046c, #860000) no-repeat 50% 50%;
+
+  --screen-extra-large: #{map_get($screenSizes, extraLarge)};
+  --screen-large: #{map_get($screenSizes, large)};
+  --screen-normal: #{map_get($screenSizes, normal)};
+  --screen-small: #{map_get($screenSizes, small)};
+  --screen-extra-small: #{map_get($screenSizes, extraSmall)};
+
+  --text-primary: #FFF;
+}
+
+body {
+  margin: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  font-family: SansSerif, serif;
+}
