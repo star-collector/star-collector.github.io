@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import cn from 'classnames';
 import { loadFull } from 'tsparticles';
 import type { Engine } from 'tsparticles-engine';
@@ -14,7 +14,13 @@ import styles from './styles.module.scss';
  * @description Home Page component
  */
 export const Home: FC = () => {
+  const [isImageLoaded, setImageLoaded] = useState(false);
+
   const particlesInit = useCallback((engine: Engine) => loadFull(engine), []);
+
+  const onImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   return (
     <Page className={styles.home}>
@@ -45,12 +51,19 @@ export const Home: FC = () => {
         <span className={styles.icon}>🏠</span>
         GitHub
       </a>
-      <a className={styles.info} href={`https://github.com/${USERNAME}`} rel="noreferrer" target="_blank">
+      <a
+        className={cn(styles.info, { [styles.hidden]: !isImageLoaded })}
+        href={`https://github.com/${USERNAME}`}
+        rel="noreferrer"
+        target="_blank"
+      >
         <img
           alt={`${USERNAME}-avatar`}
           className={styles.image}
+          onLoad={onImageLoad}
           src={`https://avatars.githubusercontent.com/${USERNAME}`}
         />
+        <h1 className={styles.name}>Pavel Bakharev</h1>
       </a>
     </Page>
   );

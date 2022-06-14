@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "BUILD_PATH='./docs' react-app-rewired build",
+    "build": "react-app-rewired build",
     "eject": "react-app-rewired eject",
     "format": "prettier ./**.ts ./**.tsx ./**.js --write ",
     "format:scss": "prettier-stylelint ./**/*.scss --write ",

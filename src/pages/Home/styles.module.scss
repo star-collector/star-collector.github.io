@@ -7,15 +7,26 @@
     padding: 20px;
     position: fixed;
     text-align: center;
+    text-decoration: none;
     top: 50%;
     transform: translate(-50%, -50%);
+    transition: 1s;
     width: 100%;
 
+    &.hidden {
+      opacity: 0;
+    }
+
+    &:visited {
+      color: var(--text-primary);
+    }
+
     .image {
+      background: var(--text-primary);
       border-radius: 80px;
       box-shadow: 0 0 10px 0 var(--text-primary);
+      height: 120px;
       text-align: center;
-      transition: 1s;
       user-select: none;
       width: 120px;
 
