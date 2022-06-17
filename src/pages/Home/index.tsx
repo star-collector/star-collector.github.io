@@ -18,6 +18,9 @@ export const Home: FC = () => {
 
   const particlesInit = useCallback((engine: Engine) => loadFull(engine), []);
 
+  /**
+   * @description Sets image loading status
+   */
   const onImageLoad = useCallback(() => {
     setImageLoaded(true);
   }, []);
@@ -35,7 +38,7 @@ export const Home: FC = () => {
       </a>
       <a
         className={cn(styles.label, styles.email)}
-        href="https://money.yandex.ru/to/410015178597784"
+        href="mailto:baharev_pavel@mail.ru"
         rel="noreferrer"
         target="_blank"
       >
